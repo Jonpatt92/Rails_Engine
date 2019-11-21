@@ -11,8 +11,5 @@ class Transaction < ApplicationRecord
 end
 
 # def self.successfull
-# where(result: 'success')
+#   where(result: 'success')
 # end
-
-# default_scope { where(result: 'success') } # This will run with every query made to the Transaction model. Also applied when making a record.
-# DON'T USE DEFAULT SCOPES, they will complicate large databases and cause unexpected behavior.
