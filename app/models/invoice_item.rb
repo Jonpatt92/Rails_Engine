@@ -6,5 +6,8 @@ class InvoiceItem < ApplicationRecord
   belongs_to :item
   belongs_to :invoice
 
-  before_validation :convert_to_decimal
+  after_validation :convert_to_decimal
+
+  validates_presence_of :unit_price,
+                          :quantity
 end

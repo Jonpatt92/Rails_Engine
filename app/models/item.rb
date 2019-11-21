@@ -7,5 +7,9 @@ class Item < ApplicationRecord
   has_many :invoice_items
   has_many :invoices, through: :invoice_items
 
-  before_validation :convert_to_decimal
+  after_validation :convert_to_decimal
+
+  validates_presence_of :name,
+                :description,
+                  :unit_price
 end

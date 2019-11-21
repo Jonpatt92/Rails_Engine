@@ -6,6 +6,8 @@ class Invoice < ApplicationRecord
   has_many :transactions
   has_many :items, through: :invoice_items
 
+  validates_presence_of :status
+
   def self.largest_invoices(limit=5) # With successful transactions
     joins(:invoice_items, :transactions)
     .select("invoices.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS total_revenue")
