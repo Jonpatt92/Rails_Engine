@@ -10,6 +10,6 @@ class Item < ApplicationRecord
   after_validation :convert_to_decimal
 
   validates_presence_of :name,
-                :description,
-                  :unit_price
+                 :description,
+                   :unit_price
 end
