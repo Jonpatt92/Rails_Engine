@@ -1,11 +1,11 @@
 class Api::V1::Merchants::FindController < ApplicationController
-# Need to make searches case insensitive
+
   def show
-    render json: MerchantSerializer.new(Merchant.find_by(valid_params))
+    render_find_by("Merchant")
   end
 
   def index
-    render json: MerchantSerializer.new(Merchant.where(valid_params))
+    render_find_all_by("Merchant")
   end
 
   private
@@ -13,4 +13,5 @@ class Api::V1::Merchants::FindController < ApplicationController
   def valid_params
     params.permit(:id, :name, :created_at, :updated_at)
   end
+
 end
