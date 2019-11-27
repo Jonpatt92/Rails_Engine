@@ -1,13 +1,13 @@
 class Api::V1::Merchants::FindController < ApplicationController
 
   def show
-    render_json("Merchant")
-    # render_find_by("Merchant")
+    # render_json("Merchant")
+    render_find_by("Merchant")
   end
 
   def index
-    render_json("Merchant")
-    # render_find_all_by("Merchant")
+    # render_json("Merchant")
+    render_find_all_by("Merchant")
   end
 
   private
