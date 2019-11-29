@@ -24,6 +24,20 @@ describe "Merchants API" do
     expect(merchant["data"]["attributes"]["name"]).to eq("Banana Stand")
   end
 
+  it "Can show a Random merchant" do
+    create_list(:merchant, 20)
+    random_merchants = []
+
+    10.times do
+      get "/api/v1/merchants/random"
+      expect(response).to be_successful
+      merchant = JSON.parse(response.body)
+      random_merchants << merchant["data"]["id"]
+    end
+
+    expect(random_merchants.uniq.count).to be >= 1
+  end
+
   it "Can show items related to specific merchant" do
     id = create(:merchant).id
 
