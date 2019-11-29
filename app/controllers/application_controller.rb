@@ -53,7 +53,7 @@ class ApplicationController < ActionController::API
 
   # Renders JSON using FastJSON_API based on the type of request (find || find_all) #
   # And whether the query is based on attributes || created/updated_at #
-  def render_json(table)
+  def render_json_query(table)
     if request_type_find? && time_query?
       render json: serializer(table).new(model(table).where(generate_date_query_argument(date_parsed)).take)
     elsif request_type_find? && !time_query?
@@ -63,6 +63,18 @@ class ApplicationController < ActionController::API
     elsif request_type_find_all? && !time_query?
       render json: serializer(table).new(model(table).where(valid_params))
     end
+  end
+
+  def render_json_show(table)
+    render json: serializer(table).new(model(table).find(params[:id]))
+  end
+
+  def render_json_index(table)
+    render json: serializer(table).new(model(table).all)
+  end
+
+  def render_json_random(table)
+    render json: serializer(table).new(model(table).random)
   end
 end
 
