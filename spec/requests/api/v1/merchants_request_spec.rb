@@ -134,7 +134,7 @@ describe "Merchants API" do
 
       business_logic = JSON.parse(response.body)
 
-      expect(business_logic["data"]["attributes"]["total_revenue"]).to eq(1080.0)
+      expect(business_logic["data"]["attributes"]["total_revenue"]).to eq("1080.00")
       expect(business_logic["data"]["attributes"]["date_specified"]).to eq("2019-05-13")
     end
 
@@ -144,7 +144,7 @@ describe "Merchants API" do
 
         business_logic = JSON.parse(response.body)
 
-        expect(business_logic["data"]["attributes"]["total_revenue"]).to eq(9320.0)
+        expect(business_logic["data"]["attributes"]["total_revenue"]).to eq("9320.00")
     end
 
     it "Returns the top 'x' merchants ranked by total revenue" do
@@ -153,9 +153,12 @@ describe "Merchants API" do
 
       business_logic = JSON.parse(response.body)
 
-      expect(business_logic["data"][0]["attributes"]["merchant"]).to eq(@merchant_4)
-      expect(business_logic["data"][1]["attributes"]["merchant"]).to eq(@merchant_3)
-      expect(business_logic["data"][2]["attributes"]["merchant"]).to eq(@merchant_2)
+      expect(business_logic["data"][0]["attributes"]["id"]).to eq(@merchant_2.id)
+      expect(business_logic["data"][0]["attributes"]["name"]).to eq(@merchant_2.name)
+      expect(business_logic["data"][1]["attributes"]["id"]).to eq(@merchant_4.id)
+      expect(business_logic["data"][1]["attributes"]["name"]).to eq(@merchant_4.name)
+      expect(business_logic["data"][2]["attributes"]["id"]).to eq(@merchant_3.id)
+      expect(business_logic["data"][2]["attributes"]["name"]).to eq(@merchant_3.name)
     end
 
     it "Returns the customer who has conducted the most total transactions for a specific merchant" do

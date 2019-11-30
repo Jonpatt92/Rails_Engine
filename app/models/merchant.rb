@@ -27,4 +27,18 @@ class Merchant < ApplicationRecord
       .take
     end
   end
+
+  # /most_revenue?quantity=x Returns the top x merchants ranked by total revenue
+  def self.most_revenue(quantity)
+    select("merchants.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS revenue")
+    .joins(invoices: [:invoice_items, :transactions])
+    .merge(Transaction.successful)
+    .group('merchants.id')
+    .order('revenue desc')
+    .limit(quantity)
+  end
+
+  def self.favorite_customer
+
+  end
 end
