@@ -36,7 +36,6 @@ class Merchant < ApplicationRecord
     .group('merchants.id')
     .order('revenue desc')
     .limit(quantity)
-    # .where(invoices: {merchant_id: self.id})
   end
 
   def self.favorite_customer
