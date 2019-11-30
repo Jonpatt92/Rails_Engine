@@ -12,6 +12,6 @@ class TotalRevenueSerializer
   end
 
   attributes :total_revenue do |obj|
-    obj.total_revenue
+    "%.2f" % obj.total_revenue
   end
 end
