@@ -4,5 +4,4 @@ class Api::V1::Merchants::TotalRevenueController < ApplicationController
       Merchant.total_revenue(params[:date]),
       {params: {date_specified: params[:date]}})
   end
-
 end
