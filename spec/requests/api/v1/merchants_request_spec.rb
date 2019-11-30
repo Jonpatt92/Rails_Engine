@@ -167,7 +167,9 @@ describe "Merchants API" do
 
       business_logic = JSON.parse(response.body)
 
-      expect(business_logic["data"]["attributes"]["favorite_customer"]).to eq(@customer_3)
+      expect(business_logic["data"]["attributes"]["id"]).to eq(@customer_3.id)
+      expect(business_logic["data"]["attributes"]["first_name"]).to eq(@customer_3.first_name)
+      expect(business_logic["data"]["attributes"]["last_name"]).to eq(@customer_3.last_name)
     end
   end
 end

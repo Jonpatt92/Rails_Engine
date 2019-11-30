@@ -12,6 +12,6 @@ class TotalRevenueSerializer
   end
 
   attributes :total_revenue do |obj|
-    "%.2f" % obj.total_revenue
+    "%.2f" % obj.total_revenue # String format operator to cap decimals at 2 digits and convert to string
   end
 end
