@@ -16,15 +16,4 @@ class Invoice < ApplicationRecord
     .order('total_revenue DESC')
     .limit(limit)
   end
-
-  def self.total_revenue(date)
-    joins(:invoice_items, :transactions)
-    .where(transactions:{result: :success})
-    .where(created_at: date.to_date.all_day) # Tells it to accept all times encompassed within the passed in date
-  end
 end
-
-# Invoices::RevenueController
-# def show
-#  Invoice.total_revenue(params[:date])
-# end
