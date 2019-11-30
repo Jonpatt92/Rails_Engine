@@ -134,7 +134,7 @@ describe "Merchants API" do
 
       business_logic = JSON.parse(response.body)
 
-      expect(business_logic["data"]["attributes"]["total_revenue"]).to eq(1080.0)
+      expect(business_logic["data"]["attributes"]["total_revenue"]).to eq("1080.00")
       expect(business_logic["data"]["attributes"]["date_specified"]).to eq("2019-05-13")
     end
 
@@ -144,7 +144,7 @@ describe "Merchants API" do
 
         business_logic = JSON.parse(response.body)
 
-        expect(business_logic["data"]["attributes"]["total_revenue"]).to eq(9320.0)
+        expect(business_logic["data"]["attributes"]["total_revenue"]).to eq("9320.00")
     end
 
     it "Returns the top 'x' merchants ranked by total revenue" do
