@@ -10,6 +10,11 @@ describe "Merchants API" do
     merchants = JSON.parse(response.body)
 
     expect(merchants["data"].count).to eq(5)
+    expect(merchants["data"][0]["attributes"]["name"]).to eq("Banana Stand")
+    expect(merchants["data"][1]["attributes"]["name"]).to eq("Banana Stand")
+    expect(merchants["data"][2]["attributes"]["name"]).to eq("Banana Stand")
+    expect(merchants["data"][3]["attributes"]["name"]).to eq("Banana Stand")
+    expect(merchants["data"][4]["attributes"]["name"]).to eq("Banana Stand")
   end
 
   it "Can get one merchant by its id" do
@@ -35,25 +40,54 @@ describe "Merchants API" do
       random_merchants << merchant["data"]["id"]
     end
 
+    merchant = JSON.parse(response.body)
     expect(random_merchants.uniq.count).to be >= 1
+    expect(merchant["data"]["attributes"]["name"]).to eq("Banana Stand")
   end
 
   it "Can show items related to specific merchant" do
     merchant = create(:merchant)
-    create_list(:item, 5, merchant: merchant)
-    id = merchant.id
+    item_1 = create(:item, name: "item_1", description: "item 1", merchant: merchant)
+    item_2 = create(:item, name: "item_2", description: "item 2", merchant: merchant)
+    item_3 = create(:item, name: "item_3", description: "item 3", merchant: merchant)
+    item_4 = create(:item, name: "item_4", description: "item 4", merchant: merchant)
+    item_5 = create(:item, name: "item_5", description: "item 5", merchant: merchant)
 
-    get "/api/v1/merchants/#{id}/items"
+    get "/api/v1/merchants/#{merchant.id}/items"
     expect(response).to be_successful
 
     items = JSON.parse(response.body)
 
     expect(items["data"].count).to eq(5)
-    expect(items["data"][0]["relationships"]["merchant"]["data"]["id"].to_i).to eq(id)
-    expect(items["data"][1]["relationships"]["merchant"]["data"]["id"].to_i).to eq(id)
-    expect(items["data"][2]["relationships"]["merchant"]["data"]["id"].to_i).to eq(id)
-    expect(items["data"][3]["relationships"]["merchant"]["data"]["id"].to_i).to eq(id)
-    expect(items["data"][4]["relationships"]["merchant"]["data"]["id"].to_i).to eq(id)
+    expect(items["data"][0]["relationships"]["merchant"]["data"]["id"].to_i).to eq(merchant.id)
+    expect(items["data"][0]["id"]).to eq(item_1.id.to_s)
+    expect(items["data"][0]["attributes"]["name"]).to eq(item_1.name)
+    expect(items["data"][0]["attributes"]["description"]).to eq(item_1.description)
+    expect(items["data"][0]["attributes"]["unit_price"]).to eq(item_1.unit_price)
+
+    expect(items["data"][1]["relationships"]["merchant"]["data"]["id"].to_i).to eq(merchant.id)
+    expect(items["data"][1]["id"]).to eq(item_2.id.to_s)
+    expect(items["data"][1]["attributes"]["name"]).to eq(item_2.name)
+    expect(items["data"][1]["attributes"]["description"]).to eq(item_2.description)
+    expect(items["data"][1]["attributes"]["unit_price"]).to eq(item_2.unit_price)
+
+    expect(items["data"][2]["relationships"]["merchant"]["data"]["id"].to_i).to eq(merchant.id)
+    expect(items["data"][2]["id"]).to eq(item_3.id.to_s)
+    expect(items["data"][2]["attributes"]["name"]).to eq(item_3.name)
+    expect(items["data"][2]["attributes"]["description"]).to eq(item_3.description)
+    expect(items["data"][2]["attributes"]["unit_price"]).to eq(item_3.unit_price)
+
+    expect(items["data"][3]["relationships"]["merchant"]["data"]["id"].to_i).to eq(merchant.id)
+    expect(items["data"][3]["id"]).to eq(item_4.id.to_s)
+    expect(items["data"][3]["attributes"]["name"]).to eq(item_4.name)
+    expect(items["data"][3]["attributes"]["description"]).to eq(item_4.description)
+    expect(items["data"][3]["attributes"]["unit_price"]).to eq(item_4.unit_price)
+
+    expect(items["data"][4]["relationships"]["merchant"]["data"]["id"].to_i).to eq(merchant.id)
+    expect(items["data"][4]["id"]).to eq(item_5.id.to_s)
+    expect(items["data"][4]["attributes"]["name"]).to eq(item_5.name)
+    expect(items["data"][4]["attributes"]["description"]).to eq(item_5.description)
+    expect(items["data"][4]["attributes"]["unit_price"]).to eq(item_5.unit_price)
   end
 
   it "Can show invoices related to specific merchant" do
@@ -150,7 +184,6 @@ describe "Merchants API" do
     it "Returns the top 'x' merchants ranked by total revenue" do
       get "/api/v1/merchants/most_revenue?quantity=3"
       expect(response).to be_successful
-
       business_logic = JSON.parse(response.body)
 
       expect(business_logic["data"][0]["attributes"]["id"]).to eq(@merchant_2.id)
