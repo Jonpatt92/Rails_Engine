@@ -203,7 +203,7 @@ describe "Merchants API" do
       expect(business_logic["data"]["attributes"]["id"]).to eq(@customer_3.id)
       expect(business_logic["data"]["attributes"]["favorite_customer_first_name"]).to eq(@customer_3.first_name)
       expect(business_logic["data"]["attributes"]["favorite_customer_last_name"]).to eq(@customer_3.last_name)
-      expect(business_logic["data"]["attributes"]["successful_transactions"]).to eq(4)
+      expect(business_logic["data"]["attributes"]["successful_transactions"]).to eq(2)
     end
   end
 end
