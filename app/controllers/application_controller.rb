@@ -65,14 +65,17 @@ class ApplicationController < ActionController::API
     end
   end
 
+  ## Renders JSON object for regular show endpoints ##
   def render_json_show(table)
     render json: serializer(table).new(model(table).find(params[:id]))
   end
 
+  ## Renders JSON object for regular index endpoints ##
   def render_json_index(table)
     render json: serializer(table).new(model(table).all)
   end
 
+  ## Renders JSON object for regular 'random' endpoints ##
   def render_json_random(table)
     render json: serializer(table).new(model(table).random)
   end
