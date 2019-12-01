@@ -2,7 +2,7 @@ require './app/models/modules/decimalable'
 
 class Item < ApplicationRecord
   include Decimalable
-  
+
   belongs_to :merchant
 
   has_many :invoice_items
