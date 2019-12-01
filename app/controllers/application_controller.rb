@@ -16,13 +16,14 @@ class ApplicationController < ActionController::API
 
   # Checks if the type of query is 'find?' #
   def request_type_find?
-    request.env["PATH_INFO"].gsub("/api/v1/merchants/", "") == "find"
+    request.env["PATH_INFO"][-4..-1] == "find"
   end
 
   # Checks if the type of query is 'find_all?' #
   def request_type_find_all?
-    request.env["PATH_INFO"].gsub("/api/v1/merchants/", "") == "find_all"
+    request.env["PATH_INFO"][-8..-1] == "find_all"
   end
+
   # Parses date being used in time related query #
   def date_parsed
     if created_at?
@@ -65,14 +66,17 @@ class ApplicationController < ActionController::API
     end
   end
 
+  ## Renders JSON object for regular show endpoints ##
   def render_json_show(table)
     render json: serializer(table).new(model(table).find(params[:id]))
   end
 
+  ## Renders JSON object for regular index endpoints ##
   def render_json_index(table)
     render json: serializer(table).new(model(table).all)
   end
 
+  ## Renders JSON object for regular 'random' endpoints ##
   def render_json_random(table)
     render json: serializer(table).new(model(table).random)
   end

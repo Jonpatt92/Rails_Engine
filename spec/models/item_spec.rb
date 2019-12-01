@@ -13,6 +13,3 @@ RSpec.describe Item, type: :model do
     it {should validate_presence_of(:unit_price)}
   end
 end
-
-# describe 'Instance Methods' do
-# end
