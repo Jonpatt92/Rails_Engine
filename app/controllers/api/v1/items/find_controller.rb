@@ -1,5 +1,4 @@
 class Api::V1::Items::FindController < ApplicationController
-
   def show
     render_json_query("Item")
   end
