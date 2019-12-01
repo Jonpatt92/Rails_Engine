@@ -29,8 +29,8 @@ class Item < ApplicationRecord
   ## If there are multiple days with equal number of sales, return the most recent day. ##
   def best_day
     invoices
-    .joins(:transactions, :invoice_items)
     .select("invoices.created_at::date, sum(invoice_items.quantity) AS purchases")
+    .joins(:transactions, :invoice_items)
     .merge(Transaction.successful)
     .where(invoice_items: {item_id: id})
     .group('invoices.created_at::date')
