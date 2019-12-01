@@ -6,6 +6,7 @@ describe "Customers API" do
     @customer_2 = create(:customer, first_name: "Alan", last_name: "Turing")
     @customer_3 = create(:customer, first_name: "Tim", last_name: "Lee")
   end
+
   it "Can show a list of all customers" do
     get '/api/v1/customers'
     expect(response).to be_successful
@@ -30,12 +31,12 @@ describe "Customers API" do
     customer = JSON.parse(response.body)
 
     expect(customer["data"]["id"].to_i).to eq(@customer_2.id)
-    expect(customers["data"]["attributes"]["first_name"]).to eq(@customer_2.first_name)
-    expect(customers["data"]["attributes"]["last_name"]).to eq(@customer_2.last_name)
+    expect(customer["data"]["attributes"]["first_name"]).to eq(@customer_2.first_name)
+    expect(customer["data"]["attributes"]["last_name"]).to eq(@customer_2.last_name)
   end
 
   it "Can show a Random customer" do
-    create_list(:customer, first_name: "Alan", last_name: "Turing")
+    create_list(:customer, 50)
     random_customers = []
 
     10.times do
@@ -48,8 +49,8 @@ describe "Customers API" do
     customer = JSON.parse(response.body)
 
     expect(random_customers.uniq.count).to be >= 1
-    expect(customer["data"]["attributes"]["first_name"]).to eq("Alan")
-    expect(customer["data"]["attributes"]["last_name"]).to eq("Turing")
+    expect(customer["data"]["attributes"]["first_name"]).to eq("Anthony")
+    expect(customer["data"]["attributes"]["last_name"]).to eq("Hopkins")
   end
 
   it "Can show invoices related to specific customer" do
@@ -96,10 +97,10 @@ describe "Customers API" do
 
   describe "Business Intelligence endpoints for items." do
     before(:each) do
-      @merchant_1 = create(:merchant)
-      @merchant_2 = create(:merchant)
-      @merchant_3 = create(:merchant)
-      @merchant_4 = create(:merchant)
+      @merchant_1 = create(:merchant, name: "merchant_1")
+      @merchant_2 = create(:merchant, name: "merchant_2")
+      @merchant_3 = create(:merchant, name: "merchant_3")
+      @merchant_4 = create(:merchant, name: "merchant_4")
 
       @customer = create(:customer)
 
@@ -131,7 +132,7 @@ describe "Customers API" do
 
       expect(business_logic["data"]["attributes"]["id"]).to eq(@merchant_3.id)
       expect(business_logic["data"]["attributes"]["name"]).to eq(@merchant_3.name)
-      expect(business_logic["data"]["attributes"]["transactions"]).to eq(3)
+       expect(business_logic["data"]["attributes"]["transactions"]).to eq(3)
     end
   end
 end
