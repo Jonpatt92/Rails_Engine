@@ -171,7 +171,7 @@ describe "Items API" do
       create(:transaction, invoice: @invoice_9, result: "success")
     end
 
-    xit "Returns the top 'x' items ranked by total revenue" do
+    it "Returns the top 'x' items ranked by total revenue" do
       get "/api/v1/items/most_revenue?quantity=3"
       expect(response).to be_successful
       business_logic = JSON.parse(response.body)
@@ -184,7 +184,7 @@ describe "Items API" do
       expect(business_logic["data"][2]["attributes"]["name"]).to eq(@item_4.name)
     end
 
-    xit "Returns the date with the most sales for the given item using the invoice date." do
+    it "Returns the date with the most sales for the given item using the invoice date." do
       get "/api/v1/items/#{@item_1.id}/best_day"
       expect(response).to be_successful
       business_logic = JSON.parse(response.body)
@@ -192,7 +192,7 @@ describe "Items API" do
       expect(business_logic["data"]["attributes"]["best_day"]).to eq("2019-05-22")
     end
 
-    xit "Returns the date with the most sales for the given item using the invoice date. If there are multiple days with equal number of sales, return the most recent day." do
+    it "Returns the date with the most sales for the given item using the invoice date. If there are multiple days with equal number of sales, return the most recent day." do
       get "/api/v1/items/#{@item_2.id}/best_day"
       expect(response).to be_successful
       business_logic = JSON.parse(response.body)
