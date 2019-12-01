@@ -15,5 +15,4 @@ class Api::V1::Merchants::FindController < ApplicationController
   def valid_params
     params.permit(:id, :name, :created_at, :updated_at)
   end
-
 end
