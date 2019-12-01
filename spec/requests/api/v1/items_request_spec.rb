@@ -171,7 +171,7 @@ describe "Items API" do
       create(:transaction, invoice: @invoice_9, result: "success")
     end
 
-    xit "Returns the top 'x' items ranked by total revenue" do
+    it "Returns the top 'x' items ranked by total revenue" do
       get "/api/v1/items/most_revenue?quantity=3"
       expect(response).to be_successful
       business_logic = JSON.parse(response.body)
