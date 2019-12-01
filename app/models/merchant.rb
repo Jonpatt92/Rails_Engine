@@ -41,8 +41,8 @@ class Merchant < ApplicationRecord
   ## /:id/favorite_customer returns the customer who has conducted the most total number of successful transactions ##
   def favorite_customer
     customers
+    .select("customers.*, COUNT(distinct transactions.id) AS successful_transactions")
     .joins(:transactions)
-    .select("customers.*, COUNT(transactions.id) AS successful_transactions")
     .merge(Transaction.successful)
     .where(invoices: {merchant_id: id})
     .group('customers.id')
