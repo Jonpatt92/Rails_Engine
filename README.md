@@ -2,10 +2,10 @@
 
 # Rails Engine API
 
-**Built in:**
-*Ruby 2.5.0*
-*Rails 5.1.7*
-*MacOS*
+### Built in:
+* *Ruby 2.5.0*
+* *Rails 5.1.7*
+* *MacOS*
 
 ## Setup
 
