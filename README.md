@@ -71,6 +71,14 @@ Spaces are represented with `%20`.
 * `/merchants/find?updated_at=`
 * `/merchants/find_all?updated_at=`
 
+### Business Logic
+
+* `/merchants/most_revenue?quantity=x`        :: Returns the **top x merchants** ranked by **total revenue** across successful transactions.
+* `/merchants/revenue?date=x`                 :: Returns the **total revenue** for *date x* across *all merchants*.
+                                                    *Tip:* Leave the date argument off to view total revenue across all dates and all merchants.
+* `/merchants/:merchant_id/favorite_customer` :: Returns the **customer** who has conducted the most total number of *successful transactions*.
+___
+
 ## Customers
 ### Standard Endpoints:
 * `/customers` :: Lists **all customers**, their *attributes*, and *relationships*.  
@@ -110,6 +118,9 @@ Spaces are represented with `%20`.
 * `/customers/find?updated_at=`
 * `/customers/find_all?updated_at=`  
 
+### Business Logic
+
+* `/customers/:customer_id/favorite_merchant` :: Returns a **merchant** where the *customer* has conducted the **most successful transactions**
 
 ## Items
 ### Standard Endpoints:
@@ -156,6 +167,14 @@ Spaces are represented with `%20`.
 * `/items/find?merchant_id=`  *This is the id of the merchant this item belongs to*
 * `/items/find_all?merchant_id=`  
 
+
+### Business Logic
+
+* `/items/most_revenue?quantity=x` :: Returns the top x **items** ranked by *total revenue* generated
+* `/items/:item_id/best_day`       :: Returns the **date** with the *most sales* for the *given item* using the *invoice date*.   
+                                      If there are multiple days with equal number of sales, it will return the most recent day.
+
+GET /api/v1/items/:id/best_day returns the date with the most sales for the given item using the invoice date. If there are multiple days with equal number of sales, return the most recent day.
 
 ## Invoices
 ### Standard Endpoints:
