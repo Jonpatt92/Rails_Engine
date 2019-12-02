@@ -17,7 +17,7 @@ describe "Invoices API" do
 
     invoices = JSON.parse(response.body)
 
-    expect(invoices["data"].count).to eq(3)
+    expect(invoices["data"].count).to eq(13)
     expect(invoices["data"][0]["attributes"]["status"]).to eq(@invoice.status)
     expect(invoices["data"][0]["attributes"]["merchant_id"]).to eq(@merchant.id)
     expect(invoices["data"][0]["attributes"]["customer_id"]).to eq(@customer.id)
@@ -32,15 +32,15 @@ describe "Invoices API" do
   end
 
   it "Can get one invoice by its id" do
-    get "/api/v1/invoices/#{@invoice_1.id}"
+    get "/api/v1/invoices/#{@invoice.id}"
     expect(response).to be_successful
 
     invoice = JSON.parse(response.body)
 
-    expect(invoice["data"]["id"].to_i).to eq(@invoice_1.id)
-    expect(invoices["data"]["attributes"]["status"]).to eq(@invoice_1.status)
-    expect(invoices["data"]["attributes"]["merchant_id"]).to eq(@merchant.id)
-    expect(invoices["data"]["attributes"]["customer_id"]).to eq(@customer.id)
+    expect(invoice["data"]["id"].to_i).to eq(@invoice.id)
+    expect(invoice["data"]["attributes"]["status"]).to eq(@invoice.status)
+    expect(invoice["data"]["attributes"]["merchant_id"]).to eq(@merchant.id)
+    expect(invoice["data"]["attributes"]["customer_id"]).to eq(@customer.id)
   end
 
   it "Can show a Random invoice" do

@@ -6,12 +6,12 @@ describe "Invoices API 'find' and 'find_all'" do
     @merchant_2     = create(:merchant)
     @customer       = create(:customer)
     @customer_2     = create(:customer)
-    @invoice_list   = create_list(:invoice, 3, status: "great", merchant: @merchant, customer: @customer)
+    @invoice_list   = create_list(:invoice, 3, status: "great", merchant: @merchant_2, customer: @customer_2)
     @unique_invoice = create(:invoice, status: "apprehensive",
                               created_at: Time.at(3343433343),
                               updated_at: Time.at(3343433343),
-                                          merchant: @merchant_2,
-                                           customer: @customer_2
+                                          merchant: @merchant,
+                                           customer: @customer
                             )
   end
 
@@ -35,9 +35,9 @@ describe "Invoices API 'find' and 'find_all'" do
 
     expect(invoices["data"].count).to eq(1)
     expect(invoices["data"][0]["id"].to_i).to eq(@unique_invoice.id)
-    expect(invoice["data"][0]["attributes"]["status"]).to eq("apprehensive")
-    expect(invoice["data"][0]["attributes"]["merchant_id"]).to eq(@merchant.id)
-    expect(invoice["data"][0]["attributes"]["customer_id"]).to eq(@customer.id)
+    expect(invoices["data"][0]["attributes"]["status"]).to eq("apprehensive")
+    expect(invoices["data"][0]["attributes"]["merchant_id"]).to eq(@merchant.id)
+    expect(invoices["data"][0]["attributes"]["customer_id"]).to eq(@customer.id)
   end
 
   it "Can find invoices based on status" do
