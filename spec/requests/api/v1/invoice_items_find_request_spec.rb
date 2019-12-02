@@ -17,7 +17,9 @@ describe "Invoice Items API 'find' and 'find_all'" do
                                             customer: @customer_2 )
 
     @unique_invoice_item = create(:invoice_item, quantity: 2,
-       unit_price: 11.00, item: @item_1, invoice: @invoice_1 )
+       unit_price: 11.00, item: @item_1, invoice: @invoice_1,
+                             created_at: Time.at(3343433343),
+                             updated_at: Time.at(3343433343))
     @invoice_item_list = create_list(:invoice_item, 3, item: @item_2,
                                                  invoice: @invoice_2 )
   end
