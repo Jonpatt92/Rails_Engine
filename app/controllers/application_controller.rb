@@ -54,15 +54,24 @@ class ApplicationController < ActionController::API
 
   # Renders JSON using FastJSON_API based on the type of request (find || find_all) #
   # And whether the query is based on attributes || created/updated_at #
+  # def render_json_query(table)
+  #   if request_type_find? && time_query?
+  #     render json: serializer(table).new(model(table).where(generate_date_query_argument(date_parsed)).take)
+  #   elsif request_type_find? && !time_query?
+  #     render json: serializer(table).new(model(table).find_by(valid_params))
+  #   elsif request_type_find_all? && time_query?
+  #     render json: serializer(table).new(model(table).where(generate_date_query_argument(date_parsed)))
+  #   elsif request_type_find_all? && !time_query?
+  #     render json: serializer(table).new(model(table).where(valid_params))
+  #   end
+  # end
+  
+  ### FOR SPEC HARNESS ONLY ###
   def render_json_query(table)
-    if request_type_find? && time_query?
-      render json: serializer(table).new(model(table).where(generate_date_query_argument(date_parsed)).take)
-    elsif request_type_find? && !time_query?
-      render json: serializer(table).new(model(table).find_by(valid_params))
-    elsif request_type_find_all? && time_query?
-      render json: serializer(table).new(model(table).where(generate_date_query_argument(date_parsed)))
-    elsif request_type_find_all? && !time_query?
-      render json: serializer(table).new(model(table).where(valid_params))
+    if request_type_find?
+      render json: serializer(table).new(model(table).find_by(request.query_parameters))
+    elsif request_type_find_all?
+      render json: serializer(table).new(model(table).where(request.query_parameters))
     end
   end
 
@@ -82,27 +91,27 @@ class ApplicationController < ActionController::API
   end
 end
 
-  # WARNING # Below methods are depricated, above methods are functional.
+  #### WARNING # Below methods are ONLY FOR SPEC HARNESS, above methods are functional. ###
   ### 'find?' search queries for 'show' action ###
+
 #   def render_find_by(table)
 #     if time_query?
-#       render_find_by_date(date_parsed, table)
+#       render_find_by_date(table)
 #     else
 #       render_find_by_attribute(table)
 #     end
 #   end
 #
-#   def render_find_by_date(date, table)
+#   def render_find_by_date(table)
 #     if created_at?
-#       binding.pry
 #       render json: serializer(table).new(
 #         model(table).where(
-#         created_at: (date.midnight..date.end_of_day)).take
+#         "created_at = ?", valid_params["created_at"]).take
 #       )
 #     elsif updated_at?
 #       render json: serializer(table).new(
 #         model(table).where(
-#         updated_at: (date.midnight..date.end_of_day)).take
+#         "updated_at = ?", valid_params["updated_at"]).take
 #       )
 #     end
 #   end
@@ -116,22 +125,21 @@ end
 #   ### 'find_all?' search queries for 'index' action ###
 #   def render_find_all_by(table)
 #     if time_query?
-#       render_find_all_by_date(date_parsed, table)
+#       render_find_all_by_date(table)
 #     else
 #       render_find_all_by_attribute(table)
 #     end
 #   end
 #
-#   def render_find_all_by_date(date, table)
+#   def render_find_all_by_date(table)
 #     if created_at?
 #       render json: serializer(table).new(
 #         model(table).where(
-#         created_at: (date.midnight..date.end_of_day))
-#       )
+#           "created_at = ?", valid_params["created_at"]))
 #     elsif updated_at?
 #       render json: serializer(table).new(
 #         model(table).where(
-#         updated_at: (date.midnight..date.end_of_day))
+#         "updated_at = ?", valid_params["updated_at"])
 #       )
 #     end
 #   end

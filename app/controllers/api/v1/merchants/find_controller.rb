@@ -1,13 +1,13 @@
 class Api::V1::Merchants::FindController < ApplicationController
 
   def show
-    render_json_query("Merchant")
-    # render_find_by("Merchant")
+    render json: MerchantSerializer.new(Merchant.find_by(request.query_parameters))
+    # render_json_query("Merchant")
   end
 
   def index
-    render_json_query("Merchant")
-    # render_find_all_by("Merchant")
+    render json: MerchantSerializer.new(Merchant.where(request.query_parameters))
+    # render_json_query("Merchant")
   end
 
   private

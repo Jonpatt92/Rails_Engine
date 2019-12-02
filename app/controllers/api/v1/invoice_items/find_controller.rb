@@ -1,10 +1,12 @@
 class Api::V1::InvoiceItems::FindController < ApplicationController
   def show
     render_json_query("InvoiceItem")
+    # render_find_by("InvoiceItem")
   end
 
   def index
     render_json_query("InvoiceItem")
+    # render_find_all_by("InvoiceItem")
   end
 
   private

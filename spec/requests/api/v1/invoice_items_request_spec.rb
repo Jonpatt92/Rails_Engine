@@ -6,6 +6,7 @@ describe "Invoice Items API" do
     @customer          = create(:customer)
     @item              = create(:item, merchant: @merchant)
     @invoice           = create(:invoice, merchant: @merchant, customer: @customer )
+    @transaction       = create(:transaction, result: "success", invoice: @invoice)
     @invoice_item_1    = create(:invoice_item, quantity: 2, unit_price: 11.00, item: @item, invoice: @invoice )
     @invoice_item_2    = create(:invoice_item, quantity: 3, unit_price: 12.00, item: @item, invoice: @invoice )
     @invoice_item_3    = create(:invoice_item, quantity: 4, unit_price: 13.00, item: @item, invoice: @invoice )
@@ -71,6 +72,7 @@ describe "Invoice Items API" do
     expect(invoice_json["data"]["attributes"]["status"]).to eq(@invoice.status)
     expect(invoice_json["data"]["attributes"]["customer_id"]).to eq(@customer.id)
     expect(invoice_json["data"]["attributes"]["merchant_id"]).to eq(@merchant.id)
+    expect(invoice_json["data"]["attributes"]["payment_status"]).to eq("paid")
   end
 
   it "Can show the item that a specific invoice_item belongs to" do

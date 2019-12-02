@@ -14,7 +14,6 @@ describe "Invoice Items API 'find' and 'find_all'" do
                                            customer: @customer_2 )
 
     @unique_transaction = create(:transaction, credit_card_number: 2222,
-                                      credit_card_expiration_date: 5555,
              result: "wheres my money", created_at: Time.at(3343433343),
                     invoice: @invoice_1, updated_at: Time.at(3343433343))
 
@@ -28,8 +27,7 @@ describe "Invoice Items API 'find' and 'find_all'" do
     transaction = JSON.parse(response.body)
 
     expect(transaction["data"]["id"].to_i).to eq(@unique_transaction.id)
-    expect(transaction["data"]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number)
-    expect(transaction["data"]["attributes"]["credit_card_expiration_date"]).to eq(@unique_transaction.credit_card_expiration_date)
+    expect(transaction["data"]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number.to_s)
     expect(transaction["data"]["attributes"]["result"]).to eq(@unique_transaction.result)
     expect(transaction["data"]["attributes"]["invoice_id"]).to eq(@invoice_1.id)
   end
@@ -42,8 +40,7 @@ describe "Invoice Items API 'find' and 'find_all'" do
 
     expect(transactions["data"].count).to eq(1)
     expect(transactions["data"][0]["id"].to_i).to eq(@unique_transaction.id)
-    expect(transactions["data"][0]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number)
-    expect(transactions["data"][0]["attributes"]["credit_card_expiration_date"]).to eq(@unique_transaction.credit_card_expiration_date)
+    expect(transactions["data"][0]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number.to_s)
     expect(transactions["data"][0]["attributes"]["result"]).to eq(@unique_transaction.result)
     expect(transactions["data"][0]["attributes"]["invoice_id"]).to eq(@invoice_1.id)
   end
@@ -55,39 +52,14 @@ describe "Invoice Items API 'find' and 'find_all'" do
     transaction = JSON.parse(response.body)
 
     expect(transaction["data"]["id"].to_i).to eq(@unique_transaction.id)
-    expect(transaction["data"]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number)
-    expect(transaction["data"]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number)
+    expect(transaction["data"]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number.to_s)
+    expect(transaction["data"]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number.to_s)
     expect(transaction["data"]["attributes"]["result"]).to eq(@unique_transaction.result)
     expect(transaction["data"]["attributes"]["invoice_id"]).to eq(@invoice_1.id)
   end
 
   it "Can find_all transactions based on credit_card_number" do
     get "/api/v1/transactions/find_all?credit_card_number=1234"
-    expect(response).to be_successful
-
-    transactions = JSON.parse(response.body)
-
-    expect(transactions["data"].count).to eq(3)
-    expect(transactions["data"][0]["id"].to_i).to eq(@transaction_list[0].id)
-    expect(transactions["data"][1]["id"].to_i).to eq(@transaction_list[1].id)
-    expect(transactions["data"][2]["id"].to_i).to eq(@transaction_list[2].id)
-  end
-
-  it "Can find transactions based on credit_card_expiration_date" do
-    get "/api/v1/transactions/find?credit_card_expiration_date=5555"
-    expect(response).to be_successful
-
-    transaction = JSON.parse(response.body)
-
-    expect(transaction["data"]["id"].to_i).to eq(@unique_transaction.id)
-    expect(transaction["data"]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number)
-    expect(transaction["data"]["attributes"]["credit_card_expiration_date"]).to eq(@unique_transaction.credit_card_expiration_date)
-    expect(transaction["data"]["attributes"]["result"]).to eq(@unique_transaction.result)
-    expect(transaction["data"]["attributes"]["invoice_id"]).to eq(@invoice_1.id)
-  end
-
-  it "Can find_all transactions based on credit_card_expiration_date" do
-    get "/api/v1/transactions/find_all?credit_card_expiration_date=123"
     expect(response).to be_successful
 
     transactions = JSON.parse(response.body)
@@ -105,8 +77,7 @@ describe "Invoice Items API 'find' and 'find_all'" do
     transaction = JSON.parse(response.body)
 
     expect(transaction["data"]["id"].to_i).to eq(@unique_transaction.id)
-    expect(transaction["data"]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number)
-    expect(transaction["data"]["attributes"]["credit_card_expiration_date"]).to eq(@unique_transaction.credit_card_expiration_date)
+    expect(transaction["data"]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number.to_s)
     expect(transaction["data"]["attributes"]["result"]).to eq(@unique_transaction.result)
     expect(transaction["data"]["attributes"]["invoice_id"]).to eq(@invoice_1.id)
   end
@@ -130,8 +101,7 @@ describe "Invoice Items API 'find' and 'find_all'" do
     transaction = JSON.parse(response.body)
 
     expect(transaction["data"]["id"].to_i).to eq(@unique_transaction.id)
-    expect(transaction["data"]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number)
-    expect(transaction["data"]["attributes"]["credit_card_expiration_date"]).to eq(@unique_transaction.credit_card_expiration_date)
+    expect(transaction["data"]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number.to_s)
     expect(transaction["data"]["attributes"]["result"]).to eq(@unique_transaction.result)
     expect(transaction["data"]["attributes"]["invoice_id"]).to eq(@invoice_1.id)
   end
@@ -155,8 +125,7 @@ describe "Invoice Items API 'find' and 'find_all'" do
     transaction = JSON.parse(response.body)
 
     expect(transaction["data"]["id"].to_i).to eq(@unique_transaction.id)
-    expect(transaction["data"]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number)
-    expect(transaction["data"]["attributes"]["credit_card_expiration_date"]).to eq(@unique_transaction.credit_card_expiration_date)
+    expect(transaction["data"]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number.to_s)
     expect(transaction["data"]["attributes"]["result"]).to eq(@unique_transaction.result)
     expect(transaction["data"]["attributes"]["invoice_id"]).to eq(@invoice_1.id)
   end
@@ -180,8 +149,7 @@ describe "Invoice Items API 'find' and 'find_all'" do
     transaction = JSON.parse(response.body)
 
     expect(transaction["data"]["id"].to_i).to eq(@unique_transaction.id)
-    expect(transaction["data"]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number)
-    expect(transaction["data"]["attributes"]["credit_card_expiration_date"]).to eq(@unique_transaction.credit_card_expiration_date)
+    expect(transaction["data"]["attributes"]["credit_card_number"]).to eq(@unique_transaction.credit_card_number.to_s)
     expect(transaction["data"]["attributes"]["result"]).to eq(@unique_transaction.result)
     expect(transaction["data"]["attributes"]["invoice_id"]).to eq(@invoice_1.id)
   end

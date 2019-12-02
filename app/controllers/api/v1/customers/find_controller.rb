@@ -1,10 +1,12 @@
 class Api::V1::Customers::FindController < ApplicationController
   def show
     render_json_query("Customer")
+    # render_find_by("Customer")
   end
 
   def index
     render_json_query("Customer")
+    # render_find_all_by("Customer")
   end
 
   private

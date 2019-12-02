@@ -1,10 +1,12 @@
 class Api::V1::Transactions::FindController < ApplicationController
   def show
     render_json_query("Transaction")
+    # render_find_by("Transaction")
   end
 
   def index
     render_json_query("Transaction")
+    # render_find_all_by("Transaction")
   end
 
   private
