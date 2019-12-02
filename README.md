@@ -2,12 +2,12 @@
 
 # Rails Engine API
 
-*Built in:*
+**Built in:**
 *Ruby 2.5.0*
 *Rails 5.1.7*
 *MacOS*
 
-##Setup
+## Setup
 
 1. Clone the latest version @ https://github.com/Jonpatt92/Rails_Engine  
 2. Navigate inside the `rails_engine` directory and run the following commands in your terminal.
@@ -18,16 +18,16 @@
 7. Run `rails s` to initiate a local server on your machine.
 8. Open your browser and navigate to http://localhost:3000/api/v1 + the desired endpoint. All further described endpoints will be situated after this path.
 
-##Data Sets
+## Data Sets
 **There are 6 sets of data, each using a similar structure for endpoints**  
 
-##Merchants
-###Standard Endpoints:
+## Merchants
+### Standard Endpoints:
 * `/merchants` :: Lists **all merchants**, their *attributes*, and *relationships*.  
 * `/merchants/:merchant_id` :: Lists the *attributes* and *relationships* for the **merchant** belonging to the id provided.  
 * `/merchants/random` :: Lists the *attributes* and *relationships* for a random **merchant**.  
 
-###Search Endpoints
+### Search Endpoints
 These endpoints will search through all merchants who have the attribute corresponding with what you enter after the `=`.  
 Spaces are represented with `%20`.  
 *ex: /merchants/find?name=alan%20turing*  
@@ -53,13 +53,13 @@ Spaces are represented with `%20`.
 * `/merchants/find?updated_at=`
 * `/merchants/find_all?updated_at=`
 
-##Customers
-###Standard Endpoints:
+## Customers
+### Standard Endpoints:
 * `/customers` :: Lists **all customers**, their *attributes*, and *relationships*.  
 * `/customers/:customer_id` :: Lists the *attributes* and *relationships* for the **customer** belonging to the id provided.  
 * `/customers/random` :: Lists the *attributes* and *relationships* for a random **customer**.  
 
-###Search Endpoints
+### Search Endpoints
 These endpoints will search through all customers who have the attribute corresponding with what you enter after the `=`.  
 Spaces are represented with `%20`.  
 *ex: /customers/find?name=alan%20turing*  
@@ -89,13 +89,13 @@ Spaces are represented with `%20`.
 * `/customers/find_all?updated_at=`  
 
 
-##Items
-###Standard Endpoints:
+## Items
+### Standard Endpoints:
 * `/items` :: Lists **all items**, their *attributes*, and *relationships*.  
 * `/items/:item_id` :: Lists the *attributes* and *relationships* for the **item** belonging to the id provided.  
 * `/items/random` :: Lists the *attributes* and *relationships* for a random **item**.  
 
-###Search Endpoints
+### Search Endpoints
 These endpoints will search through all items who have the attribute corresponding with what you enter after the `=`.  
 Spaces are represented with `%20`.  
 *ex: /items/find?name=alan%20turing*  
@@ -131,13 +131,13 @@ Spaces are represented with `%20`.
 * `/items/find_all?merchant_id=`  
 
 
-##Invoices
-###Standard Endpoints:
+## Invoices
+### Standard Endpoints:
 * `/invoices` :: Lists **all invoices**, their *attributes*, and *relationships*.  
 * `/invoices/:invoice_id` :: Lists the *attributes* and *relationships* for the **invoice** belonging to the id provided.  
 * `/invoices/random` :: Lists the *attributes* and *relationships* for a random **invoice**.  
 
-###Search Endpoints
+### Search Endpoints
 These endpoints will search through all invoices who have the attribute corresponding with what you enter after the `=`.  
 Spaces are represented with `%20`.  
 *ex: /invoices/find?name=alan%20turing*  
@@ -171,13 +171,13 @@ Spaces are represented with `%20`.
 
 
 
-##Invoice Items (Join Table between Invoices and Items)
-###Standard Endpoints:
+## Invoice Items (Join Table between Invoices and Items)
+### Standard Endpoints:
 * `/invoice_items` :: Lists **all invoice items**, their *attributes*, and *relationships*.  
 * `/invoice_items/:invoice_item_id` :: Lists the *attributes* and *relationships* for the **invoice item** belonging to the id provided.  
 * `/invoice_items/random` :: Lists the *attributes* and *relationships* for a random **invoice item**.  
 
-###Search Endpoints
+### Search Endpoints
 These endpoints will search through all invoice_items who have the attribute corresponding with what you enter after the `=`.  
 Spaces are represented with `%20`.  
 *ex: /invoice_items/find?name=alan%20turing*  
@@ -213,13 +213,13 @@ Spaces are represented with `%20`.
 * `/invoice_items/find_all?item_id=`  
 
 
-##Transactions
-###Standard Endpoints:
+## Transactions
+### Standard Endpoints:
 * `/transactions` :: Lists **all transactions**, their *attributes*, and *relationships*.  
 * `/transactions/:transaction_id` :: Lists the *attributes* and *relationships* for the **transaction** belonging to the id provided.  
 * `/transactions/random` :: Lists the *attributes* and *relationships* for a random **transaction**.  
 
-###Search Endpoints
+### Search Endpoints
 These endpoints will search through all transactions who have the attribute corresponding with what you enter after the `=`.  
 Spaces are represented with `%20`.  
 *ex: /transactions/find?name=alan%20turing*  
