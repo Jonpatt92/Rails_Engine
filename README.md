@@ -21,11 +21,29 @@
 ## Data Sets
 **There are 6 sets of data, each using a similar structure for endpoints**  
 
+* Merchants
+* Customers
+* Items
+* Invoices
+* Invoice Items
+* Transactions
+
+**Each set will have the following types of endpoints:**
+
+* Search
+* Standard
+* Relational
+* Business Logic
+
 ## Merchants
 ### Standard Endpoints:
 * `/merchants` :: Lists **all merchants**, their *attributes*, and *relationships*.  
 * `/merchants/:merchant_id` :: Lists the *attributes* and *relationships* for the **merchant** belonging to the id provided.  
 * `/merchants/random` :: Lists the *attributes* and *relationships* for a random **merchant**.  
+
+### Relationship Endpoints:
+* `/merchant/:merchant_id/items` :: Returns a collection of *items* associated with that **merchant**
+* `/merchant/:merchant_id/invoices` :: Returns a collection of *invoices* associated with that **merchant** from their known orders.
 
 ### Search Endpoints
 These endpoints will search through all merchants who have the attribute corresponding with what you enter after the `=`.  
@@ -58,6 +76,10 @@ Spaces are represented with `%20`.
 * `/customers` :: Lists **all customers**, their *attributes*, and *relationships*.  
 * `/customers/:customer_id` :: Lists the *attributes* and *relationships* for the **customer** belonging to the id provided.  
 * `/customers/random` :: Lists the *attributes* and *relationships* for a random **customer**.  
+
+### Relationship Endpoints:
+* `/customers/:customer_id/invoices` :: Returns a collection of associated *invoices*
+* `/customers/:customer_id/transactions` :: Returns a collection of associated *transactions*
 
 ### Search Endpoints
 These endpoints will search through all customers who have the attribute corresponding with what you enter after the `=`.  
@@ -94,6 +116,10 @@ Spaces are represented with `%20`.
 * `/items` :: Lists **all items**, their *attributes*, and *relationships*.  
 * `/items/:item_id` :: Lists the *attributes* and *relationships* for the **item** belonging to the id provided.  
 * `/items/random` :: Lists the *attributes* and *relationships* for a random **item**.  
+
+### Relationship Endpoints:
+* `/items/:item_id/invoice_items` :: Returns a collection of associated *invoice items*
+* `/items/:item_id/merchant` :: Returns the associated *merchant*
 
 ### Search Endpoints
 These endpoints will search through all items who have the attribute corresponding with what you enter after the `=`.  
@@ -137,6 +163,19 @@ Spaces are represented with `%20`.
 * `/invoices/:invoice_id` :: Lists the *attributes* and *relationships* for the **invoice** belonging to the id provided.  
 * `/invoices/random` :: Lists the *attributes* and *relationships* for a random **invoice**.  
 
+### Relationship Endpoints:
+* `/invoices/:invoice_id/transactions`  :: Returns a collection of associated *transactions*
+* `/invoices/:invoice_id/invoice_items` :: Returns a collection of associated *invoice items*
+* `/invoices/:invoice_id/items`         :: Returns a collection of associated *items*
+* `/invoices/:invoice_id/customer`      :: Returns the associated *customer*
+* `/invoices/:invoice_id/merchant`      :: Returns the associated *merchant*
+
+
+GET /api/v1/invoices/:id/transactions returns a collection of associated transactions
+GET /api/v1/invoices/:id/invoice_items returns a collection of associated invoice items
+GET /api/v1/invoices/:id/items returns a collection of associated items
+GET /api/v1/invoices/:id/customer returns the associated customer
+GET /api/v1/invoices/:id/merchant returns the associated merchant
 ### Search Endpoints
 These endpoints will search through all invoices who have the attribute corresponding with what you enter after the `=`.  
 Spaces are represented with `%20`.  
@@ -177,6 +216,10 @@ Spaces are represented with `%20`.
 * `/invoice_items/:invoice_item_id` :: Lists the *attributes* and *relationships* for the **invoice item** belonging to the id provided.  
 * `/invoice_items/random` :: Lists the *attributes* and *relationships* for a random **invoice item**.  
 
+### Relationship Endpoints:
+* `/invoice_items/:invoice_item_id/invoice` :: Returns the associated *invoice*
+* `/invoice_items/:invoice_item_id/item` :: Returns the associated *item*
+
 ### Search Endpoints
 These endpoints will search through all invoice_items who have the attribute corresponding with what you enter after the `=`.  
 Spaces are represented with `%20`.  
@@ -212,12 +255,14 @@ Spaces are represented with `%20`.
 * `/invoice_items/find?item_id=` *The id of the item this invoice_item belongs to*
 * `/invoice_items/find_all?item_id=`  
 
-
 ## Transactions
 ### Standard Endpoints:
 * `/transactions` :: Lists **all transactions**, their *attributes*, and *relationships*.  
 * `/transactions/:transaction_id` :: Lists the *attributes* and *relationships* for the **transaction** belonging to the id provided.  
 * `/transactions/random` :: Lists the *attributes* and *relationships* for a random **transaction**.  
+
+### Relationship Endpoints:
+* `/transactions/:transaction_id/invoice` :: Returns the associated *invoice*
 
 ### Search Endpoints
 These endpoints will search through all transactions who have the attribute corresponding with what you enter after the `=`.  
