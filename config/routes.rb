@@ -47,20 +47,20 @@ Rails.application.routes.draw do
         get '/:id/favorite_merchant',   to: 'favorite_merchant#show'
       end
 
-      # namespace :invoices do
-      #   ## Search ##
-      #   get '/find',                    to: 'find#show'
-      #   get '/find_all',                to: 'find#index'
-      #   get '/random',                  to: 'random#show'
-      #
-      #   ## Relationships ##
-      #   get '/:id/items',               to: 'items#index'
-      #   get '/:id/invoice_items',       to: 'invoice_items#index'
-      #   get '/:id/transactions',        to: 'transactions#index'
-      #   get '/:id/customer',            to: 'customer#show'
-      #   get '/:id/merchant',            to: 'merchant#show'
-      # end
-      #
+      namespace :invoices do
+        ## Search ##
+        get '/find',                    to: 'find#show'
+        get '/find_all',                to: 'find#index'
+        get '/random',                  to: 'random#show'
+
+        ## Relationships ##
+        get '/:id/items',               to: 'items#index'
+        get '/:id/invoice_items',       to: 'invoice_items#index'
+        get '/:id/transactions',        to: 'transactions#index'
+        get '/:id/customer',            to: 'customer#show'
+        get '/:id/merchant',            to: 'merchant#show'
+      end
+
       # namespace :invoice_items do
       #   ## Search ##
       #   get '/find',                    to: 'find#show'
@@ -85,7 +85,7 @@ Rails.application.routes.draw do
       resources :merchants, only: [:index, :show]
       resources :items, only: [:index, :show]
       resources :customers, only: [:index, :show]
-      # resources :invoices, only: [:index, :show]
+      resources :invoices, only: [:index, :show]
       # resources :invoice_items, only: [:index, :show]
       # resources :transactions, only: [:index, :show]
     end
