@@ -13,7 +13,7 @@
 2. Navigate inside the `rails_engine` directory and run the following commands in your terminal.
 3. Run `bundle install` + `bundle update` + `bundle` to prep the gemfile.
 4. Run `rake db:create` + `rake db:migrate` to create the databases.
-5. Run `rake import_csv` to import csv data into the databases.
+5. Run `rake import_csv` to import csv data into the databases. This should take roughly 2 minutes. 
 6. Run `rspec` to initiate the testing suite and verify the app is ready.
 7. Run `rails s` to initiate a local server on your machine.
 8. Open your browser and navigate to http://localhost:3000/api/v1 + the desired endpoint. All further described endpoints will be situated after this path.
