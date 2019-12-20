@@ -10,6 +10,4 @@ class CustomerSerializer
   attribute :updated_at do |object|
     Date.parse(object.updated_at.to_s)
   end
-
-  has_many :invoices
 end

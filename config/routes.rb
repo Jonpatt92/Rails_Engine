@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get :root, to: 'welcome#index' # Receives 200 status, but won't show the view.
+  get '/', to: 'welcome#index' # Receives 200 status, but won't show the view.
 
   namespace :api do
     namespace :v1 do

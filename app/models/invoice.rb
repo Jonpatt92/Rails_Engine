@@ -8,6 +8,16 @@ class Invoice < ApplicationRecord
 
   validates_presence_of :status
 
+  def payment_status
+    unless Transaction.where("invoice_id = ?", object.id) == []
+      if self.transactions[0][:result] == "success"
+        "paid"
+      elsif self.transactions[0][:result] == "failed"
+        "unpaid"
+      end
+    end
+  end
+
 end
 
   ## Build Endpoint ##
