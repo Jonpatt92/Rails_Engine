@@ -188,7 +188,7 @@ describe "Items API" do
       get "/api/v1/items/#{@item_1.id}/best_day"
       expect(response).to be_successful
       business_logic = JSON.parse(response.body)
-      binding.pry
+
       expect(business_logic["data"]["attributes"]["best_day"]).to eq("2019-05-22")
     end
 
