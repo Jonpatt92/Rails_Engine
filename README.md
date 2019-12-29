@@ -3,11 +3,16 @@
 # Rails Engine API
 
 ### Built in:
-* *Ruby 2.5.0*
+* *Ruby 2.6.3*
 * *Rails 5.1.7*
 * *MacOS*
 
-## Setup
+## How to use
+* In your browser, navigate to: **rails-engine-bi.herokuapp.com/api/v1/** + the desired endpoint.
+
+* Example: [rails-engine-bi.herokuapp.com/api/v1/merchants](https://rails-engine-bi.herokuapp.com/api/v1/merchants)
+
+## Setup on local machine
 
 1. Clone the latest version @ https://github.com/Jonpatt92/Rails_Engine  
 2. Navigate inside the `rails_engine` directory and run the following commands in your terminal.
