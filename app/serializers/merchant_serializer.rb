@@ -10,7 +10,4 @@ class MerchantSerializer
   attribute :updated_at do |object|
     Date.parse(object.updated_at.to_s)
   end
-
-  has_many :items
-  has_many :invoices
 end
