@@ -14,7 +14,6 @@ class InvoiceSerializer
   belongs_to :merchant
   belongs_to :customer
 
-
   attribute :payment_status do |invoice|
     invoice.payment_status
   end

@@ -1,7 +1,6 @@
 class Api::V1::Customers::FindController < ApplicationController
   ##### Have this (and all other find controllers) < from a FindController that dictates the actions all find controllers take #####
   def show
-
     render_json_query("Customer")
   end
 
