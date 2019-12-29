@@ -47,8 +47,8 @@
 * `/merchants/random` :: Lists the *attributes* and *relationships* for a random **merchant**.  
 
 ### Relationship Endpoints:
-* `/merchant/:merchant_id/items` :: Returns a collection of *items* associated with that **merchant**
-* `/merchant/:merchant_id/invoices` :: Returns a collection of *invoices* associated with that **merchant** from their known orders.
+* `/merchants/:merchant_id/items` :: Returns a collection of *items* associated with that **merchant**
+* `/merchants/:merchant_id/invoices` :: Returns a collection of *invoices* associated with that **merchant** from their known orders.
 
 ### Search Endpoints
 These endpoints will search through all merchants who have the attribute corresponding with what you enter after the `=`.  
