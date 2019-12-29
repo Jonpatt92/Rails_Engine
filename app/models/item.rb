@@ -27,6 +27,7 @@ class Item < ApplicationRecord
 
   ## /api/v1/items/:id/best_day returns the date with the most sales for the given item using the invoice date. ##
   ## If there are multiple days with equal number of sales, return the most recent day. ##
+  ## Filter should be a key/value pair where the key is item_id: and represents the item being queried for best_day ##
   def self.best_day(filter = {})
     select("invoices.created_at::date, sum(invoice_items.quantity) AS purchases")
     .joins(invoices: [:invoice_items, :transactions])
