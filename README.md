@@ -26,18 +26,18 @@
 ## Data Sets
 **There are 6 sets of data, each using a similar structure for endpoints**  
 
-* Merchants
+* [Merchants](#-merchants)
 * Customers
 * Items
 * Invoices
 * Invoice Items
 * Transactions
 
-**Each set will have the following types of endpoints:**
+**Each set will have the following types of endpoints, detailed below:**
 
-* Search
 * Standard
 * Relational
+* Search
 * Business Logic
 
 ## Merchants
