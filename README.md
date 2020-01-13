@@ -26,12 +26,12 @@
 ## Data Sets
 **There are 6 sets of data, each using a similar structure for endpoints**  
 
-* [Merchants](##-merchants)
+* [Merchants](#merchants)
 * [Customers](#customers)
-* [Items](##items)
-* Invoices
-* Invoice Items
-* Transactions
+* [Items](#items)
+* [Invoices](#invoices)
+* [Invoice Items](#invoice-items)
+* [Transactions](#transactions)
 
 **Each set will have the following types of endpoints, detailed below:**
 
